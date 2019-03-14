@@ -1,0 +1,27 @@
+{% extends 'store/store_home.html' %}
+{% block content %}
+            <section class="mx-auto col-xs-12 col-sm-8 col-md-8 p-0">
+                {% for producto in productos %}
+        
+                <section class="row mx-auto mb-3">
+                    <section class="col-xs-12 col-sm-12 col-md-6 p-0">
+                    {% for foto in producto.foto.all%}
+                        {% if foto.Type_Image == 'PRC' %}
+                        <a href="{% url 'producto_detalle' pk=producto.pk %}"><img src="{{foto}}" alt="presentacion" class="img-principal"></a>
+                        {% endif %}
+                    {% endfor %}
+                    </section>
+                    <section class="mx-auto col-xs-12 col-sm-12 col-md-5 alert alert-light">
+                        <h1 class="nombre-modelo fuente">{{ producto.nombre_modelo }}</h1>
+                        <hr>
+                        <section class="d-flex justify-content-end">
+                            <h4 class="precio fuente">$ {{producto.precio}}<sup class="sup">MXN</sup></h4>
+                        </section>
+                        <p class="fuente">{{producto.descripcion}}</p>
+                        <a href="{% url 'producto_detalle' pk=producto.pk %}" type="button" class="btn btn-dark">Ver mas</a>
+                    </section>
+                </section>
+        
+                {% endfor%}
+            </section>
+{% endblock %}
